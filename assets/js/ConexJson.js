@@ -1,7 +1,8 @@
 
 export let Datos = (()=>{
   try{
-    const BaseUrl = "http://127.0.0.1:5500/animales.json";
+    //const BaseUrl = "http://127.0.0.1:5500/animales.json";
+    const BaseUrl = "../animales.json";
     const getDatos = async () =>{
       
       const responde = await fetch(BaseUrl);
