@@ -74,7 +74,7 @@ window.modalDetails = (i)=>{
       <div class="card-body text-center">
           <h6 class="card-text">${Animal._edad}</h6>
          
-          <hr>
+          <hr text-white>
           <p>${Animal._Comentarios}</p>
       </div>
     </div>
