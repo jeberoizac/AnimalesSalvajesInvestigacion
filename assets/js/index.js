@@ -63,7 +63,7 @@ window.modalDetails = (i)=>{
   try {
     const modaBody = document.getElementsByClassName('modal-body')[0];
     const Animal = Animales[i];
-    console.log(Animal);
+    console.log(Animal._Sonido);
     modaBody.innerHTML = `
     <div class="px-3 pb-2">
     <div class="card w-50 m-auto bg-dark text-white border-0">
@@ -91,7 +91,7 @@ document.getElementById("animal").addEventListener("change", async (e)=>{
   try {
     const OpAnimal = e.target.value;
     const SelAnimal = await Datos.getDatos();
-    console.log(OpAnimal);    
+    console.log(SelAnimal)
     const ObjAnimal = await SelAnimal.find((a)=>{      
     return a.name === OpAnimal;
     })
@@ -100,7 +100,7 @@ document.getElementById("animal").addEventListener("change", async (e)=>{
     const preview = document.getElementById("preview");
     preview.parentElement.classList.remove('p-5');
     preview.style.backgroundImage = `url(./assets/imgs/${img})`;
-    console.log(img);
+    console.log(sonido);
   } catch (error) {
     console.log(error);
   }
