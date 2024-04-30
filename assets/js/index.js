@@ -27,11 +27,11 @@ const ImprHtml =() =>{
       <div class ="px-3 pb-2">
         <div class="bg-dark text white">
         <img
-          height="200"
+          height="200" width ="180"
           src="./assets/imgs/${key._Imagen}"
           data-bs-toggle="modal"  
-                data-bs-target="#exampleModal" 
-                onclick="modalDetails('${i}')" 
+          data-bs-target="#exampleModal" 
+          onclick="modalDetails('${i}')" 
           />
           <div>
             <button onclick="hacerSonido('${key._Sonido}')" class="btn btn-secondary w-100">
@@ -63,22 +63,37 @@ window.modalDetails = (i)=>{
   try {
     const modaBody = document.getElementsByClassName('modal-body')[0];
     const Animal = Animales[i];
-    console.log(Animal._Sonido);
-    modaBody.innerHTML = `
-    <div class="px-3 pb-2">
-    <div class="card w-50 m-auto bg-dark text-white border-0">
-      <img 
-      src="./assets/imgs/${Animal._Imagen}" 
-      class="d-block m-auto w-100"
-      />
-      <div class="card-body text-center">
-          <h6 class="card-text">${Animal._edad}</h6>
+    console.log(modaBody);
+    // modaBody.innerHTML = `
+    // <div class="px-3 pb-2">
+    // <div class="card w-50 m-auto bg-dark text-white border-0">
+    //   <img 
+    //   src="./assets/imgs/${Animal._Imagen}" 
+    //   class="d-block m-auto w-100"
+    //   />
+    //   <div class="card-body text-center">
+    //       <h6 class="card-text">${Animal._edad}</h6>
          
-          <hr text-white>
-          <p>${Animal._Comentarios}</p>
-      </div>
-    </div>
-    </div>`;
+    //       <hr class ="text-white">
+    //       <p>${Animal._Comentarios}</p>
+    //   </div>
+    // </div>
+    // </div>`;
+    modaBody.innerHTML = `
+   
+      
+        <h5 class="modal-title">
+        Nombre Animal : ${Animal._nombre}</h5>
+        <img 
+           src="./assets/imgs/${Animal._Imagen}" 
+           class="d-block m-auto w-100"
+           />
+      
+        <p>Rango Edad : ${Animal._edad}</p>
+     
+      <hr>
+      <p>Comentarios : ${Animal._Comentarios}</p>
+    `;
     
   } catch (error) {
     console.log(error)
@@ -89,7 +104,7 @@ window.modalDetails = (i)=>{
 //Event Listener para cambio de Opciones
 document.getElementById("animal").addEventListener("change", async (e)=>{
   try {
-    const OpAnimal = e.target.value;
+    const OpAnimal = e.target.value; //target detecta donde se hizo evento y trae su valor
     const SelAnimal = await Datos.getDatos();
     console.log(SelAnimal)
     const ObjAnimal = await SelAnimal.find((a)=>{      
@@ -120,6 +135,9 @@ document.querySelector("btn").addEventListener("click", function(event) {
        let animal1 = new animal(nombre,edad,comentarios,img,sonido);
        Animales.push(animal1)
        ImprHtml();
+       document.getElementById("animal").querySelectorAll('option')[0].selected = 'selected';
+       document.getElementById("edad").querySelectorAll('option')[0].selected = 'selected';
+       document.getElementById("comentarios").value = "";
        console.log(Animales);
     }
     else{
